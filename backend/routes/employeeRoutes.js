@@ -8,8 +8,10 @@ const {
   deleteEmployee,
 } = require("../controllers/employeeController");
 
-router.route("/").get(getEmployee).post(addEmployee);
+const { secure } = require("../middleware/authMiddleware");
 
-router.route("/:id").delete(deleteEmployee).put(updateEmployee);
+router.route("/").get(secure, getEmployee).post(secure, addEmployee);
+
+router.route("/:id").delete(secure, deleteEmployee).put(secure, updateEmployee);
 
 module.exports = router;
