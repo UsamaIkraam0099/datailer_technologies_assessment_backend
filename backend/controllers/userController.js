@@ -38,6 +38,8 @@ const login = asynchandler(async (req, res) => {
 
 // Sign Up User
 const signUp = asynchandler(async (req, res) => {
+  console.log("Body =", req.body);
+
   const { ph_number } = req.body;
 
   if (!ph_number) {
