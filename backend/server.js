@@ -16,6 +16,10 @@ app.use("/api/employees", require("./routes/employeeRoutes"));
 
 app.use(errorHandler);
 
-app.listen(port, "192.168.0.107", () =>
-  console.log(`Server started on port ${port}`)
-);
+// For Deploy on Heroku
+app.listen(port, () => console.log(`Server started on port ${port}`));
+
+// For Local Use
+// app.listen(port, "192.168.0.107", () =>
+//   console.log(`Server started on port ${port}`)
+// );
