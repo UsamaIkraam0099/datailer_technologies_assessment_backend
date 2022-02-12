@@ -7,6 +7,9 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
   },
+  "engines": {
+    "node": "16.2.0"
+  },
   "author": "Usama Ikraam",
   "license": "MIT",
   "dependencies": {

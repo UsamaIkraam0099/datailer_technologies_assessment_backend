@@ -4,14 +4,24 @@ const Employee = require("../models/employeeModal");
 
 // Get Employee
 const getEmployee = asynchandler(async (req, res) => {
-  const employees = await Employee.find();
+  const { page, limit } = req.params;
+  const employees = await Employee.find()
+    .limit(limit * 1)
+    .skip((page - 1) * limit);
 
   res.status(200).json({ data: employees });
+
+  // Com
+  // const { page, limit } = req.params;
+  // console.log("Req =", page, limit);
+  // const employees = await Employee.find();
+
+  // res.status(200).json({ data: employees });
 });
 
 // Add Employee
 const addEmployee = asynchandler(async (req, res) => {
-  const { age, address, firstName, lastName, phNumber } = req.body;
+  const { age, address, first_name, last_name, ph_number } = req.body;
 
   //   if (!req.body.text) {
   //     res.status(400);
@@ -19,16 +29,16 @@ const addEmployee = asynchandler(async (req, res) => {
   //   }
 
   const employee = await Employee.create({
-    first_name: firstName,
-    last_name: lastName,
+    first_name: first_name,
+    last_name: last_name,
     age: age,
     address: address,
-    ph_number: phNumber,
+    ph_number: ph_number,
   });
 
   res.status(200).json({
     employee: employee,
-    message: `${firstName} ${lastName} added successfully!`,
+    message: `${first_name} ${last_name} added successfully!`,
   });
 });
 

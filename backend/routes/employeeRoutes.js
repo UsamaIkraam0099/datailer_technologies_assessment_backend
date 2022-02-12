@@ -10,8 +10,8 @@ const {
 
 const { secure } = require("../middleware/authMiddleware");
 
-router.route("/").get(secure, getEmployee).post(secure, addEmployee);
-
+router.post("/:page/:limit", secure, getEmployee);
+router.post("/", secure, addEmployee);
 router.route("/:id").delete(secure, deleteEmployee).put(secure, updateEmployee);
 
 module.exports = router;

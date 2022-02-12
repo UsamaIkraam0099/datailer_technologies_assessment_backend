@@ -11,13 +11,11 @@ const secure = asynchandler(async (req, res, next) => {
     try {
       isToken = authorization.split(" ")[1];
       const verifyToken = jwt.verify(isToken, process.env.JWT_SECRET_KEY);
-      console.log("verifyToken =", verifyToken);
       const { user } = verifyToken;
       const { id } = user;
       req.user = await User.findById(id);
       next();
     } catch (err) {
-      console.log("err", err);
       res.status(401);
       throw new Error("Unauthorized");
     }
