@@ -44,6 +44,7 @@ const addEmployee = asynchandler(async (req, res) => {
 
 // Update Employee
 const updateEmployee = asynchandler(async (req, res) => {
+  console.log("Update =", req.body);
   const { body } = req;
   const { id } = req.params;
   const employee = await Employee.findById(id);

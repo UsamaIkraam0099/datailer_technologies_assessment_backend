@@ -18,6 +18,11 @@ const getUser = asynchandler(async (req, res) => {
 
 // Login User
 const login = asynchandler(async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   const { ph_number } = req.body;
 
   const loginUser = await User.findOne({ ph_number });
